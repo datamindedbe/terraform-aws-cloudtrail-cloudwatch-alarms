@@ -65,7 +65,7 @@ module "aws_sns_topic_label" {
 }
 
 resource "aws_sns_topic" "default" {
-  count             = local.enabled ? 1 : 0
+  count             = local.is_creating_sns_topic ? 1 : 0
   name              = module.aws_sns_topic_label.id
   tags              = module.this.tags
   kms_master_key_id = local.create_kms_key ? module.sns_kms_key[0].key_id : var.kms_master_key_id
