@@ -65,10 +65,22 @@ module "aws_sns_topic_label" {
 }
 
 resource "aws_sns_topic" "default" {
-  count             = local.enabled && var.sns_topic_arn == null ? 1 : 0
-  name              = module.aws_sns_topic_label.id
-  tags              = module.this.tags
-  kms_master_key_id = local.create_kms_key ? module.sns_kms_key[0].key_id : var.kms_master_key_id
+  count                                    = local.enabled ? 1 : 0
+  name                                     = module.aws_sns_topic_label.id
+  tags                                     = module.this.tags
+  kms_master_key_id                        = local.create_kms_key ? module.sns_kms_key[0].key_id : var.kms_master_key_id
+  application_success_feedback_role_arn    = var.sns_topic_application_success_feedback_role_arn
+  application_success_feedback_sample_rate = var.sns_topic_application_success_feedback_sample_rate
+  application_failure_feedback_role_arn    = var.sns_topic_application_failure_feedback_role_arn
+  lambda_success_feedback_sample_rate      = var.sns_topic_lambda_success_feedback_sample_rate
+  lambda_success_feedback_role_arn         = var.sns_topic_lambda_success_feedback_role_arn
+  lambda_failure_feedback_role_arn         = var.sns_topic_lambda_failure_feedback_role_arn
+  http_success_feedback_role_arn           = var.sns_topic_http_success_feedback_role_arn
+  http_success_feedback_sample_rate        = var.sns_topic_http_success_feedback_sample_rate
+  http_failure_feedback_role_arn           = var.sns_topic_http_failure_feedback_role_arn
+  sqs_success_feedback_role_arn            = var.sns_topic_sqs_success_feedback_role_arn
+  sqs_success_feedback_sample_rate         = var.sns_topic_sqs_success_feedback_sample_rate
+  sqs_failure_feedback_role_arn            = var.sns_topic_sqs_failure_feedback_role_arn
 }
 
 resource "aws_sns_topic_policy" "default" {

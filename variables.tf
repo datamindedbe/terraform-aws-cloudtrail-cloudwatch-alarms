@@ -68,3 +68,44 @@ variable "metrics" {
   default     = {}
   description = "The cloudwatch metrics and corresponding alarm definitions"
 }
+
+
+variable "sns_topic_application_success_feedback_role_arn" {
+  default = null
+}
+variable "sns_topic_application_success_feedback_sample_rate" {
+  default = null
+}
+variable "sns_topic_application_failure_feedback_role_arn" {
+  default = null
+}
+
+variable "sns_topic_lambda_success_feedback_role_arn" {
+  default = null
+}
+variable "sns_topic_lambda_success_feedback_sample_rate" {
+  default = null
+}
+variable "sns_topic_lambda_failure_feedback_role_arn" {
+  default = null
+}
+
+variable "sns_topic_http_success_feedback_role_arn" {
+  default = null
+}
+variable "sns_topic_http_success_feedback_sample_rate" {
+  default = null
+}
+variable "sns_topic_http_failure_feedback_role_arn" {
+  default = null
+}
+
+variable "sns_topic_sqs_success_feedback_role_arn" {
+  default = null
+}
+variable "sns_topic_sqs_success_feedback_sample_rate" {
+  default = null
+}
+variable "sns_topic_sqs_failure_feedback_role_arn" {
+  default = null
+}
